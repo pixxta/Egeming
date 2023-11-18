@@ -1,0 +1,16 @@
+# Виртуальное окружение Python
+egeming_env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node.js
+node_modules/
+
+# Файлы, созданные средой разработки
+.vscode/
+.idea/
+
+# Файлы окружения
+.env
