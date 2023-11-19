@@ -1,0 +1,15 @@
+<!-- task_item.html -->
+
+<div class="task-item">
+    <!-- Маленький прямоугольник с типом предмета -->
+    <div class="subject-type-rectangle">
+        <p>{{ task.subject_type }}</p>
+    </div>
+
+    <!-- Большой прямоугольник с остальной информацией -->
+    <div class="main-info-rectangle">
+        <h3>{{ task.task_number }}.  {{ task.title }}</h3>
+        <p>{{ task.task_condition }}</p>
+        <p>Баллы: {{ task.points }}</p>
+    </div>
+</div>

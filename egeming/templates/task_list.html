@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'react\egeming_react_app\styles.css' %}">
+
+    <title>Список заданий</title>
+    <style>
+        .task-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form method="get" action="{% url 'task_list' %}">
+    <label for="subject_type">Filter by Subject Type:</label>
+    <select name="subject_type" id="subject_type">
+        <option value="" {% if not subject_type_filter %}selected{% endif %}>All</option>
+        <option value="Информатика" {% if subject_type_filter == "Информатика" %}selected{% endif %}>Информатика</option>
+        <option value="Математика" {% if subject_type_filter == "Математика" %}selected{% endif %}>Математика</option>
+        <option value="История" {% if subject_type_filter == "История" %}selected{% endif %}>История</option>
+        <option value="Русский язык" {% if subject_type_filter == "Русский язык" %}selected{% endif %}>Русский язык</option>
+        <option value="Английский язык" {% if subject_type_filter == "Английский язык" %}selected{% endif %}>Английский язык</option>
+        <option value="Обществознание" {% if subject_type_filter == "Обществознание" %}selected{% endif %}>Обществознание</option>
+        <option value="География" {% if subject_type_filter == "География" %}selected{% endif %}>География</option>
+        <option value="Физика" {% if subject_type_filter == "Физика" %}selected{% endif %}>Физика</option>
+        <option value="Химия" {% if subject_type_filter == "Химия" %}selected{% endif %}>Химия</option>
+        <option value="Биология" {% if subject_type_filter == "Биология" %}selected{% endif %}>Биология</option>
+        <option value="Литература" {% if subject_type_filter == "Литература" %}selected{% endif %}>Литература</option>
+
+        <!-- Добавьте остальные варианты subject_type -->
+    </select>
+    <button type="submit">Filter</button>
+</form>
+    <h1>Список заданий: {{ subject_type_filter  }}</h1>
+    {% for task in tasks %}
+        {% include 'task_item.html' with task=task %}
+    {% endfor %}
+
+    <a href="{% url 'create_task' %}">Создать новое задание</a>
+</body>
+</html>

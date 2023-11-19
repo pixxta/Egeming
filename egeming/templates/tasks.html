@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task.title }} - {{ task.description }} - {{ task.points }} - {{ task.subject_type }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add a New Task</h2>
+    <form method="post" action="{% url 'task_list' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
