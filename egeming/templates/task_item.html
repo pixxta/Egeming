@@ -1,5 +1,3 @@
-<!-- task_item.html -->
-
 <div class="task-item">
     <!-- Маленький прямоугольник с типом предмета -->
     <div class="subject-type-rectangle">
@@ -11,5 +9,23 @@
         <h3>{{ task.task_number }}.  {{ task.title }}</h3>
         <p>{{ task.task_condition }}</p>
         <p>Баллы: {{ task.points }}</p>
+
+        <!-- Кнопки редактирования и удаления -->
+        <button class="edit-btn" data-task-id="{{ task.pk }}">Редактировать</button>
+        <button class="delete-btn" data-task-id="{{ task.pk }}">Удалить</button>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- JavaScript-код для обработки нажатия на кнопку "Редактировать" -->
+<script>
+    $(document).ready(function () {
+        $('.edit-btn').click(function () {
+            var taskId = $(this).data('task-id');
+            var editUrl = '/edit_task/' + taskId + '/';  // Создаем URL для редактирования
+            window.location.href = editUrl;  // Перенаправляем пользователя по созданному URL
+        });
+    });
+</script>

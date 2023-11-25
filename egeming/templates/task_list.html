@@ -15,7 +15,7 @@
 </head>
 <body>
     <form method="get" action="{% url 'task_list' %}">
-    <label for="subject_type">Filter by Subject Type:</label>
+    <label for="subject_type">Выбор предмета:</label>
     <select name="subject_type" id="subject_type">
         <option value="" {% if not subject_type_filter %}selected{% endif %}>All</option>
         <option value="Информатика" {% if subject_type_filter == "Информатика" %}selected{% endif %}>Информатика</option>

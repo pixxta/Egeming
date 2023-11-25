@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from .forms import TaskForm
@@ -63,3 +63,20 @@ class CreateTaskView(View):
             return redirect('task_list')
         else:
             return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+        
+        
+class EditTaskView(View):
+    template_name = 'edit_task.html'
+
+    def get(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        form = TaskForm(instance=task)
+        return render(request, self.template_name, {'form': form, 'task': task})
+
+    def post(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('task_list')
+        return render(request, self.template_name, {'form': form, 'task': task})
